@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Makes native widgets (date/time pickers, select dropdowns, scrollbars)
+     render with dark chrome instead of a jarring light popup. */
+  color-scheme: dark;
+}
