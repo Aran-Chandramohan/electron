@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calendar-container">
+        <!-- Header -->
+        <header class="calendar-header">
+            <div class="header-left">
+                <h1>September 2026</h1>
+            </div>
+            <div class="header-right">
+                <button class="btn-today">Today</button>
+                <div class="nav-arrows">
+                    <button>&lt;</button>
+                    <button>&gt;</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Day Names Row -->
+        <div class="weekdays-grid">
+            <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+        </div>
+
+        <!-- Dates Grid -->
+        <div class="days-grid" id="calendar-grid">
+            <!-- Dynamically populated or static representation -->
+            <div class="day-cell muted">30</div>
+            <div class="day-cell muted">31</div>
+            <div class="day-cell">1</div>
+            <div class="day-cell">2</div>
+            <div class="day-cell">3</div>
+            <div class="day-cell">4</div>
+            <div class="day-cell">5</div>
+            <div class="day-cell">6</div>
+            <div class="day-cell">7</div>
+            <div class="day-cell">8</div>
+            <div class="day-cell">9</div>
+            <div class="day-cell">10</div>
+            <div class="day-cell">11</div>
+            <div class="day-cell">12</div>
+            <div class="day-cell">13</div>
+            <div class="day-cell">14</div>
+            <div class="day-cell">15</div>
+            <div class="day-cell today"><span class="number">16</span></div>
+            <div class="day-cell">17
+                <div class="event-pill blue">Team Sync</div>
+            </div>
+            <div class="day-cell">18</div>
+            <div class="day-cell">19</div>
+            <div class="day-cell">20</div>
+            <!-- Remaining days simplified -->
+            <div class="day-cell">21</div><div class="day-cell">22</div><div class="day-cell">23</div>
+            <div class="day-cell">24</div><div class="day-cell">25</div><div class="day-cell">26</div><div class="day-cell">27</div>
+            <div class="day-cell">28</div><div class="day-cell">29</div><div class="day-cell">30</div>
+            <div class="day-cell muted">1</div><div class="day-cell muted">2</div><div class="day-cell muted">3</div><div class="day-cell muted">4</div>
+        </div>
+    </div>
+</body>
+</html>
