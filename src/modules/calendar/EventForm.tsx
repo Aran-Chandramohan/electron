@@ -8,6 +8,7 @@ import { classifyRecurrenceRule, describeRecurrenceRule } from './recurrence';
 import { RepeatSelect, type RepeatMode } from './RepeatSelect';
 import { CustomRecurrenceModal } from './CustomRecurrenceModal';
 import { EditScopeDialog, type RecurrenceScope } from './EditScopeDialog';
+import { AndroidTimePicker } from './Timepicker';
 
 interface EventFormProps {
   editingOccurrence: EventOccurrence | null;
@@ -59,10 +60,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
   const isRecurring = editingOccurrence?.isRecurring ?? false;
 
   const initialDate = editingEvent ? new Date(editingEvent.start) : defaultDate ?? new Date();
-  // A defaultDate with a real time-of-day (e.g. from clicking a specific hour
-  // in the Day/Week grid) should be respected; one with no time component
-  // (e.g. clicking a bare day cell in Month view, which is midnight) falls
-  // back to a friendlier default instead of pre-filling 12:00 AM.
+  
   const hasExplicitTime = Boolean(defaultDate && (defaultDate.getHours() !== 0 || defaultDate.getMinutes() !== 0));
   const initialStartTime = editingEvent && !editingEvent.allDay
     ? toTimeInputValue(editingEvent.start)
@@ -79,6 +77,9 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
   );
   const [location, setLocation] = useState(editingEvent?.location ?? '');
   const [tagId, setTagId] = useState<string>(editingEvent?.tagIds[0] ?? '');
+
+  const [isStartClockOpen, setIsStartClockOpen] = useState(false);
+  const [isEndClockOpen, setIsEndClockOpen] = useState(false);
 
   const masterDtstart = masterEvent ? new Date(masterEvent.start) : initialDate;
   const [repeatMode, setRepeatMode] = useState<RepeatMode>(() =>
@@ -121,8 +122,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
 
     const start = allDay ? new Date(`${date}T00:00:00`) : new Date(`${date}T${startTime}:00`);
     let end = allDay ? undefined : new Date(`${date}T${endTime}:00`);
-    // An end time at or before the start time means the event crosses
-    // midnight (e.g. 11pm-1am), not an invalid range — roll it to the next day.
+    
     if (end && end <= start) {
       end = new Date(end.getTime() + 24 * 60 * 60 * 1000);
     }
@@ -213,25 +213,46 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
             </div>
 
             <div className="col-span-3 grid grid-cols-2 gap-3">
-              <div>
+              {/* START TIME PICKER */}
+              <div className="relative">
                 <label className="mb-1 block text-sm font-medium text-slate-300">Start time</label>
-                <input
-                  type="time"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
+                <button
+                  type="button"
                   disabled={allDay}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-800/50 disabled:text-slate-500"
-                />
+                  onClick={() => setIsStartClockOpen(true)}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-left text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-800/50 disabled:text-slate-500"
+                >
+                  {startTime}
+                </button>
+
+                {isStartClockOpen && (
+                  <AndroidTimePicker
+                    value={startTime}
+                    onChange={(newTime) => setStartTime(newTime)}
+                    onClose={() => setIsStartClockOpen(false)}
+                  />
+                )}
               </div>
-              <div>
+
+              {/* END TIME PICKER */}
+              <div className="relative">
                 <label className="mb-1 block text-sm font-medium text-slate-300">End time</label>
-                <input
-                  type="time"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
+                <button
+                  type="button"
                   disabled={allDay}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-800/50 disabled:text-slate-500"
-                />
+                  onClick={() => setIsEndClockOpen(true)}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-left text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-800/50 disabled:text-slate-500"
+                >
+                  {endTime}
+                </button>
+
+                {isEndClockOpen && (
+                  <AndroidTimePicker
+                    value={endTime}
+                    onChange={(newTime) => setEndTime(newTime)}
+                    onClose={() => setIsEndClockOpen(false)}
+                  />
+                )}
               </div>
             </div>
           </div>
