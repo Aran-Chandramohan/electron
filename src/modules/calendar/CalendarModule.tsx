@@ -189,7 +189,7 @@ export function CalendarModule() {
 
           <button
             onClick={() => openNewEventForm(new Date())}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-500"
+            className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teal-500"
           >
             + New Event
           </button>

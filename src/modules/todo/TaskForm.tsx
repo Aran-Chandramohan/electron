@@ -66,7 +66,7 @@ export function TaskForm({ editingTask, onClose }: TaskFormProps) {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Finish reading assignment"
               required
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-teal-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
 
@@ -87,7 +87,7 @@ export function TaskForm({ editingTask, onClose }: TaskFormProps) {
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as Task['priority'])}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-blue-500"
               >
                 {PRIORITIES.map((p) => (
                   <option key={p} value={p}>
@@ -103,7 +103,7 @@ export function TaskForm({ editingTask, onClose }: TaskFormProps) {
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-blue-500"
               />
             </div>
           </div>

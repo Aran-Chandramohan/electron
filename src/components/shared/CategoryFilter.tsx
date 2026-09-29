@@ -8,9 +8,6 @@ interface CategoryFilterProps {
   onSelect: (tagId: string | null) => void;
 }
 
-// Generic tag filter bar — used by any module that wants to filter its
-// items by category (To-Do tasks today, Calendar events, etc.). Tags are a
-// single shared list, so a category created in one module shows up in all.
 export function CategoryFilter({ selectedTagId, onSelect }: CategoryFilterProps) {
   const tags = useAppStore((s) => s.tags);
   const addTag = useAppStore((s) => s.addTag);
@@ -35,7 +32,7 @@ export function CategoryFilter({ selectedTagId, onSelect }: CategoryFilterProps)
         onClick={() => onSelect(null)}
         className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
           selectedTagId === null
-            ? 'bg-blue-600 text-white'
+            ? 'bg-teal-600 text-white'
             : 'bg-slate-800 text-slate-300 ring-1 ring-slate-700 hover:bg-slate-700'
         }`}
       >
@@ -50,7 +47,7 @@ export function CategoryFilter({ selectedTagId, onSelect }: CategoryFilterProps)
             <button
               onClick={() => onSelect(tag.id)}
               className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                isSelected ? `ring-2 ${colors.ring} ${colors.chip}` : `${colors.chip} hover:brightness-95`
+                isSelected ? `ring-2 ${colors.ring}${colors.chip}` : `${colors.chip} hover:brightness-95`
               }`}
             >
               <span className={`h-1.5 w-1.5 rounded-full ${colors.dot}`} />
@@ -85,7 +82,7 @@ export function CategoryFilter({ selectedTagId, onSelect }: CategoryFilterProps)
             }
           }}
           placeholder="Category name"
-          className="w-32 rounded-full border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 outline-none focus:border-blue-500"
+          className="w-32 rounded-full border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 outline-none focus:border-teal-500"
         />
       ) : (
         <button

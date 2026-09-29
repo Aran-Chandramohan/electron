@@ -59,7 +59,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           <button 
             type="button"
             onClick={() => setStep('hour')}
-            className={`px-2 rounded ${step === 'hour' ? 'bg-blue-600/30 text-blue-400 font-normal' : 'text-slate-400'}`}
+            className={`px-2 rounded ${step === 'hour' ? 'bg-teal-600/30 text-blue-400 font-normal' : 'text-slate-400'}`}
           >
             {hour}
           </button>
@@ -67,7 +67,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           <button 
             type="button"
             onClick={() => setStep('minute')}
-            className={`px-2 rounded ${step === 'minute' ? 'bg-blue-600/30 text-blue-400 font-normal' : 'text-slate-400'}`}
+            className={`px-2 rounded ${step === 'minute' ? 'bg-teal-600/30 text-blue-400 font-normal' : 'text-slate-400'}`}
           >
             {minute.toString().padStart(2, '0')}
           </button>
@@ -108,7 +108,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                     onClick={() => handleHourClick(h)}
                     style={{ transform: `translate(${x}px, ${y}px)` }}
                     className={`absolute top-1/2 left-1/2 -ml-5 -mt-5 flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition ${
-                      hour === h ? 'bg-blue-600 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-200'
+                      hour === h ? 'bg-teal-600 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-200'
                     }`}
                   >
                     {h}
@@ -134,7 +134,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                     onClick={() => handleMinuteClick(m)}
                     style={{ transform: `translate(${x}px, ${y}px)` }}
                     className={`absolute top-1/2 left-1/2 -ml-5 -mt-5 flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition ${
-                      minute === m ? 'bg-blue-600 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-200'
+                      minute === m ? 'bg-teal-600 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-200'
                     }`}
                   >
                     {m.toString().padStart(2, '0')}
@@ -151,7 +151,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                 type="button"
                 onClick={() => handleAmPmClick('AM')}
                 className={`h-20 w-20 rounded-full font-semibold transition ${
-                  ampm === 'AM' ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                  ampm === 'AM' ? 'bg-teal-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                 }`}
               >
                 AM
@@ -160,7 +160,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                 type="button"
                 onClick={() => handleAmPmClick('PM')}
                 className={`h-20 w-20 rounded-full font-semibold transition ${
-                  ampm === 'PM' ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                  ampm === 'PM' ? 'bg-teal-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                 }`}
               >
                 PM
@@ -169,7 +169,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           )}
 
           {/* Center clock pin dot */}
-          <div className="h-2 w-2 rounded-full bg-blue-500 pointer-events-none" />
+          <div className="h-2 w-2 rounded-full bg-teal-500 pointer-events-none" />
         </div>
 
         {/* Footer actions */}

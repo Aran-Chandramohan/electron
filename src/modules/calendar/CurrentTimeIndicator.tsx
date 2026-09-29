@@ -17,8 +17,8 @@ export function CurrentTimeIndicator() {
       className="pointer-events-none absolute left-0 right-0 z-20 flex items-center"
       style={{ top: `${topPxForTime(now)}px` }}
     >
-      <div className="h-2 w-2 flex-shrink-0 rounded-full bg-red-500" />
-      <div className="h-px flex-1 bg-red-500" />
+      <div className="h-2 w-2 flex-shrink-0 rounded-full bg-teal-500" />
+      <div className="h-px flex-1 bg-teal-500" />
     </div>
   );
 }

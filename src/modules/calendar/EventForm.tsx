@@ -304,7 +304,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
               <button
                 type="button"
                 onClick={handleDelete}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-red-400 hover:bg-red-500/10"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-red-400 hover:bg-teal-500/10"
               >
                 Delete
               </button>
@@ -321,7 +321,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
               </button>
               <button
                 type="submit"
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500"
+                className="rounded-lg bg-teal-600 hover:bg-teal-500"
               >
                 {editingOccurrence ? 'Save changes' : 'Add event'}
               </button>
