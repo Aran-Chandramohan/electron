@@ -59,7 +59,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           <button 
             type="button"
             onClick={() => setStep('hour')}
-            className={`px-2 rounded ${step === 'hour' ? 'bg-teal-600/30 text-blue-400 font-normal' : 'text-slate-400'}`}
+            className={`px-2 rounded ${step === 'hour' ? 'bg-teal-600/30 text-teal-400 font-normal' : 'text-slate-400'}`}
           >
             {hour}
           </button>
@@ -67,7 +67,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           <button 
             type="button"
             onClick={() => setStep('minute')}
-            className={`px-2 rounded ${step === 'minute' ? 'bg-teal-600/30 text-blue-400 font-normal' : 'text-slate-400'}`}
+            className={`px-2 rounded ${step === 'minute' ? 'bg-teal-600/30 text-teal-400 font-normal' : 'text-slate-400'}`}
           >
             {minute.toString().padStart(2, '0')}
           </button>
@@ -75,14 +75,14 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
             <button 
               type="button"
               onClick={() => setAmPm('AM')} 
-              className={`${ampm === 'AM' ? 'text-blue-400 font-bold' : ''}`}
+              className={`${ampm === 'AM' ? 'text-teal-400 font-bold' : ''}`}
             >
               AM
             </button>
             <button 
               type="button"
               onClick={() => setAmPm('PM')} 
-              className={`${ampm === 'PM' ? 'text-blue-400 font-bold' : ''}`}
+              className={`${ampm === 'PM' ? 'text-teal-400 font-bold' : ''}`}
             >
               PM
             </button>

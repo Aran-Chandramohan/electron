@@ -43,7 +43,7 @@ export function TimeGridView({
 
   function colorsFor(tagId?: string) {
     const tag = tagId ? tags[tagId] : undefined;
-    return { chip: colorClassesFor(tag?.color ?? 'blue').chip, solid: solidColorClassFor(tag?.color ?? 'blue') };
+    return { chip: colorClassesFor(tag?.color ?? 'teal').chip, solid: solidColorClassFor(tag?.color ?? 'teal') };
   }
 
   function handleGridClick(day: Date, e: MouseEvent<HTMLDivElement>) {
@@ -63,7 +63,7 @@ export function TimeGridView({
           {days.map((day) => (
             <div key={day.toISOString()} className="flex-1 py-2">
               {WEEKDAY_LABELS[day.getDay()]}{' '}
-              <span className={isSameDay(day, today) ? 'text-blue-400' : 'text-slate-300'}>{day.getDate()}</span>
+              <span className={isSameDay(day, today) ? 'text-teal-400' : 'text-slate-300'}>{day.getDate()}</span>
             </div>
           ))}
         </div>

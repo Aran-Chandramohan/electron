@@ -196,7 +196,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Team Sync"
               required
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
             />
           </div>
 
@@ -208,7 +208,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
               />
             </div>
 
@@ -220,7 +220,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
                   type="button"
                   disabled={allDay}
                   onClick={() => setIsStartClockOpen(true)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-left text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-800/50 disabled:text-slate-500"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-left text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 disabled:bg-slate-800/50 disabled:text-slate-500"
                 >
                   {startTime}
                 </button>
@@ -241,7 +241,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
                   type="button"
                   disabled={allDay}
                   onClick={() => setIsEndClockOpen(true)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-left text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-800/50 disabled:text-slate-500"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-left text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 disabled:bg-slate-800/50 disabled:text-slate-500"
                 >
                   {endTime}
                 </button>
@@ -262,7 +262,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
               type="checkbox"
               checked={allDay}
               onChange={(e) => setAllDay(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-blue-600 focus:ring-blue-500"
+              className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-600 focus:ring-teal-500"
             />
             All day
           </label>
@@ -276,7 +276,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
                 <button
                   type="button"
                   onClick={() => setCustomModalOpen(true)}
-                  className="text-xs font-medium text-blue-400 hover:text-blue-300"
+                  className="text-xs font-medium text-teal-400 hover:text-teal-300"
                 >
                   Edit
                 </button>
@@ -290,7 +290,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Optional"
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
             />
           </div>
 

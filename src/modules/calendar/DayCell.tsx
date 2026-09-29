@@ -102,7 +102,7 @@ export function DayCell({
           : visibleEvents.map((occurrence) => {
               const { event } = occurrence;
               const tag = event.tagIds[0] ? tags[event.tagIds[0]] : undefined;
-              const solid = solidColorClassFor(tag?.color ?? 'blue');
+              const solid = solidColorClassFor(tag?.color ?? 'teal');
               return (
                 <span
                   key={`${occurrence.masterId}:${occurrence.originalStart}`}
