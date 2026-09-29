@@ -77,12 +77,12 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                 min={1}
                 value={interval}
                 onChange={(e) => setInterval_(Math.max(1, Number(e.target.value) || 1))}
-                className="w-20 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-20 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
               />
               <select
                 value={freq}
                 onChange={(e) => setFreq(e.target.value as RecurrenceRule['freq'])}
-                className="flex-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="flex-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
               >
                 {FREQ_OPTIONS.map((f) => (
                   <option key={f.value} value={f.value}>
@@ -108,7 +108,7 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                   type="radio"
                   checked={monthlyMode === 'date'}
                   onChange={() => setMonthlyMode('date')}
-                  className="h-4 w-4 border-slate-600 bg-slate-800 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-slate-600 bg-slate-800 text-teal-600 focus:ring-teal-500"
                 />
                 Day {eventDate.getDate()} of the month
               </label>
@@ -117,7 +117,7 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                   type="radio"
                   checked={monthlyMode === 'weekday'}
                   onChange={() => setMonthlyMode('weekday')}
-                  className="h-4 w-4 border-slate-600 bg-slate-800 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-slate-600 bg-slate-800 text-teal-600 focus:ring-teal-500"
                 />
                 On {describeMonthlyWeekday(eventDate)}
               </label>
@@ -138,7 +138,7 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                 type="radio"
                 checked={endMode === 'never'}
                 onChange={() => setEndMode('never')}
-                className="h-4 w-4 border-slate-600 bg-slate-800 text-blue-600 focus:ring-blue-500"
+                className="h-4 w-4 border-slate-600 bg-slate-800 text-teal-600 focus:ring-teal-500"
               />
               Never
             </label>
@@ -147,7 +147,7 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                 type="radio"
                 checked={endMode === 'onDate'}
                 onChange={() => setEndMode('onDate')}
-                className="h-4 w-4 border-slate-600 bg-slate-800 text-blue-600 focus:ring-blue-500"
+                className="h-4 w-4 border-slate-600 bg-slate-800 text-teal-600 focus:ring-teal-500"
               />
               On
               <input
@@ -157,7 +157,7 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                   setEndDate(e.target.value);
                   setEndMode('onDate');
                 }}
-                className="rounded-lg border border-slate-700 bg-slate-800 px-2 py-1 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="rounded-lg border border-slate-700 bg-slate-800 px-2 py-1 text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
               />
             </label>
             <label className="flex items-center gap-2 text-sm text-slate-300">
@@ -165,7 +165,7 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                 type="radio"
                 checked={endMode === 'afterCount'}
                 onChange={() => setEndMode('afterCount')}
-                className="h-4 w-4 border-slate-600 bg-slate-800 text-blue-600 focus:ring-blue-500"
+                className="h-4 w-4 border-slate-600 bg-slate-800 text-teal-600 focus:ring-teal-500"
               />
               After
               <input
@@ -176,7 +176,7 @@ export function CustomRecurrenceModal({ initialRule, eventDate, onSave, onClose 
                   setEndCount(Math.max(1, Number(e.target.value) || 1));
                   setEndMode('afterCount');
                 }}
-                className="w-16 rounded-lg border border-slate-700 bg-slate-800 px-2 py-1 text-sm text-slate-100 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-16 rounded-lg border border-slate-700 bg-slate-800 px-2 py-1 text-sm text-slate-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
               />
               occurrences
             </label>
