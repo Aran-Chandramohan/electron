@@ -17,7 +17,7 @@ export function TodoToggle({ checked, onChange }: TodoToggleProps) {
       To Do
       <span
         className={`relative inline-flex h-5 w-9 flex-shrink-0 items-center rounded-full transition-colors ${
-          checked ? 'bg-blue-600' : 'bg-slate-700'
+          checked ? 'bg-teal-600' : 'bg-slate-700'
         }`}
       >
         <span

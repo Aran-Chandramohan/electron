@@ -22,7 +22,7 @@ export const TAG_SOLID_CLASSES: Record<string, string> = {
   yellow: 'bg-yellow-500',
   emerald: 'bg-emerald-500',
   cyan: 'bg-cyan-500',
-  purple: 'bg-purple-500',
+  purple: 'bgo-purple-500',
   rose: 'bg-rose-500',
   slate: 'bg-slate-500',
 };

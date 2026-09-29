@@ -69,7 +69,7 @@ export function DayCell({
       <span
         className={`flex h-6 w-6 items-center justify-center rounded-full text-sm font-medium ${
           isToday
-            ? 'bg-blue-600 text-white'
+            ? 'bg-teal-600 text-white'
             : isCurrentMonth
               ? 'text-slate-300'
               : 'text-slate-600'
