@@ -62,8 +62,8 @@ export function DayCell({
         if (!raw) return;
         onEventDrop(JSON.parse(raw) as EventDragPayload, date);
       }}
-      className={`flex ${minHeightClassName} flex-col gap-1 border-b border-r border-slate-800 p-1.5 text-left transition hover:bg-slate-800/50 ${
-        isCurrentMonth ? 'bg-slate-900' : 'bg-slate-900/40'
+      className={`flex ${minHeightClassName} flex-col gap-1 border-b border-r border-black-800 p-1.5 text-left transition hover:bg-black-800/50 ${
+        isCurrentMonth ? 'bg-black-900' : 'bg-black-900/40'
       }`}
     >
       <span
@@ -71,8 +71,8 @@ export function DayCell({
           isToday
             ? 'bg-teal-600 text-white'
             : isCurrentMonth
-              ? 'text-slate-300'
-              : 'text-slate-600'
+              ? 'text-black-300'
+              : 'text-black-600'
         }`}
       >
         {date.getDate()}
@@ -82,7 +82,7 @@ export function DayCell({
         {showTodos
           ? visibleTodos.map((task) => {
               const tag = task.tagIds[0] ? tags[task.tagIds[0]] : undefined;
-              const colors = colorClassesFor(tag?.color ?? 'slate');
+              const colors = colorClassesFor(tag?.color ?? 'black');
               return (
                 <span
                   key={task.id}
@@ -132,8 +132,8 @@ export function DayCell({
               );
             })}
         {showTodos
-          ? todoOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-slate-500">+{todoOverflowCount} more</span>
-          : eventOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-slate-500">+{eventOverflowCount} more</span>}
+          ? todoOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-black-500">+{todoOverflowCount} more</span>
+          : eventOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-black-500">+{eventOverflowCount} more</span>}
       </div>
     </button>
   );

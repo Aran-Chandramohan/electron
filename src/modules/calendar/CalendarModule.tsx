@@ -146,40 +146,40 @@ export function CalendarModule() {
   return (
     <div className="mx-auto flex h-full max-w-5xl flex-col px-4 py-6">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold text-slate-100">{headerTitle}</h1>
+        <h1 className="text-2xl font-semibold text-black-100">{headerTitle}</h1>
         <div className="flex items-center gap-2">
           <TodoToggle checked={showTodos} onChange={setShowTodos} />
 
           <button
             onClick={goToToday}
-            className="rounded-lg border border-slate-700 px-3 py-1.5 text-sm font-medium text-slate-300 hover:bg-slate-800"
+            className="rounded-lg border border-black-700 px-3 py-1.5 text-sm font-medium text-black-300 hover:bg-black-800"
           >
             Today
           </button>
           <div className="flex items-center gap-1">
             <button
               onClick={() => step(-1)}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-800"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-black-400 hover:bg-black-800"
               aria-label={`Previous ${viewMode}`}
             >
               &lt;
             </button>
             <button
               onClick={() => step(1)}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-800"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-black-400 hover:bg-black-800"
               aria-label={`Next ${viewMode}`}
             >
               &gt;
             </button>
           </div>
 
-          <div className="flex gap-1 rounded-lg bg-slate-900 p-1 text-sm font-medium">
+          <div className="flex gap-1 rounded-lg bg-black-900 p-1 text-sm font-medium">
             {VIEW_MODES.map((mode) => (
               <button
                 key={mode}
                 onClick={() => setViewMode(mode)}
                 className={`rounded-md px-3 py-1.5 capitalize transition ${
-                  viewMode === mode ? 'bg-slate-700 text-slate-100' : 'text-slate-500 hover:text-slate-300'
+                  viewMode === mode ? 'bg-black-700 text-black-100' : 'text-black-500 hover:text-black-300'
                 }`}
               >
                 {mode}
@@ -201,8 +201,8 @@ export function CalendarModule() {
       </div>
 
       {viewMode === 'month' ? (
-        <div className="flex-1 overflow-hidden rounded-xl border border-slate-800 bg-slate-900 shadow-sm">
-          <div className="grid grid-cols-7 border-b border-slate-800 bg-slate-900/80 text-center text-xs font-semibold text-slate-500">
+        <div className="flex-1 overflow-hidden rounded-xl border border-black-800 bg-black-900 shadow-sm">
+          <div className="grid grid-cols-7 border-b border-black-800 bg-black-900/80 text-center text-xs font-semibold text-black-500">
             {gridDays.slice(0, 7).map((d) => (
               <div key={d.toISOString()} className="py-2">
                 {WEEKDAY_LABELS[d.getDay()]}

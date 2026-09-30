@@ -9,7 +9,7 @@ interface TaskItemProps {
 }
 
 const PRIORITY_STYLES: Record<Task['priority'], string> = {
-  low: 'bg-slate-500/15 text-slate-300',
+  low: 'bg-black-500/15 text-black-300',
   medium: 'bg-sky-500/15 text-sky-300',
   high: 'bg-orange-500/15 text-orange-300',
   urgent: 'bg-red-500/15 text-red-300',
@@ -35,11 +35,11 @@ export function TaskItem({ task, onEdit }: TaskItemProps) {
   const due = formatDueDate(task.dueDate);
 
   return (
-    <div className="group flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm transition hover:border-slate-700">
+    <div className="group flex items-start gap-3 rounded-xl border border-black-800 bg-black-900 p-4 shadow-sm transition hover:border-black-700">
       <button
         onClick={() => toggleTaskStatus(task.id)}
         className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-2 transition ${
-          isDone ? 'border-emerald-500 bg-emerald-500' : 'border-slate-600 hover:border-slate-500'
+          isDone ? 'border-emerald-500 bg-emerald-500' : 'border-black-600 hover:border-black-500'
         }`}
         title={isDone ? 'Mark as not done' : 'Mark as done'}
       >
@@ -47,11 +47,11 @@ export function TaskItem({ task, onEdit }: TaskItemProps) {
       </button>
 
       <div className="min-w-0 flex-1">
-        <p className={`text-sm font-medium ${isDone ? 'text-slate-500 line-through' : 'text-slate-100'}`}>
+        <p className={`text-sm font-medium ${isDone ? 'text-black-500 line-through' : 'text-black-100'}`}>
           {task.title}
         </p>
         {task.description && (
-          <p className={`mt-0.5 text-sm ${isDone ? 'text-slate-600' : 'text-slate-400'}`}>{task.description}</p>
+          <p className={`mt-0.5 text-sm ${isDone ? 'text-black-600' : 'text-black-400'}`}>{task.description}</p>
         )}
 
         <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -66,7 +66,7 @@ export function TaskItem({ task, onEdit }: TaskItemProps) {
           {due && (
             <span
               className={`text-xs font-medium ${
-                !isDone && due.overdue ? 'text-red-400' : 'text-slate-500'
+                !isDone && due.overdue ? 'text-red-400' : 'text-black-500'
               }`}
             >
               Due {due.label}
@@ -78,14 +78,14 @@ export function TaskItem({ task, onEdit }: TaskItemProps) {
       <div className="flex flex-shrink-0 items-center gap-1 opacity-0 transition group-hover:opacity-100">
         <button
           onClick={() => onEdit(task)}
-          className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-800 hover:text-slate-300"
+          className="rounded-lg p-1.5 text-black-500 hover:bg-black-800 hover:text-black-300"
           title="Edit task"
         >
           <PencilIcon className="h-4 w-4" />
         </button>
         <button
           onClick={() => deleteTask(task.id)}
-          className="rounded-lg p-1.5 text-slate-500 hover:bg-red-500/10 hover:text-red-400"
+          className="rounded-lg p-1.5 text-black-500 hover:bg-red-500/10 hover:text-red-400"
           title="Delete task"
         >
           <TrashIcon className="h-4 w-4" />

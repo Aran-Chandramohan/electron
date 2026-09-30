@@ -56,27 +56,27 @@ export function TimeGridView({
   const showHeader = days.length > 1;
 
   return (
-    <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900 shadow-sm">
+    <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-black-800 bg-black-900 shadow-sm">
       {showHeader && (
-        <div className="flex border-b border-slate-800 bg-slate-900/80 text-center text-xs font-semibold text-slate-500">
+        <div className="flex border-b border-black-800 bg-black-900/80 text-center text-xs font-semibold text-black-500">
           <div className="w-14 flex-shrink-0" />
           {days.map((day) => (
             <div key={day.toISOString()} className="flex-1 py-2">
               {WEEKDAY_LABELS[day.getDay()]}{' '}
-              <span className={isSameDay(day, today) ? 'text-teal-400' : 'text-slate-300'}>{day.getDate()}</span>
+              <span className={isSameDay(day, today) ? 'text-teal-400' : 'text-black-300'}>{day.getDate()}</span>
             </div>
           ))}
         </div>
       )}
 
-      <div className="flex border-b border-slate-800">
-        <div className="flex w-14 flex-shrink-0 items-center justify-center py-1 text-[10px] font-medium text-slate-600">
+      <div className="flex border-b border-black-800">
+        <div className="flex w-14 flex-shrink-0 items-center justify-center py-1 text-[10px] font-medium text-black-600">
           {showTodos ? 'To-Do' : 'All day'}
         </div>
         {days.map((day) => {
           const dateKey = toDateKey(day);
           return (
-            <div key={day.toISOString()} className="flex-1 space-y-1 border-l border-slate-800 p-1">
+            <div key={day.toISOString()} className="flex-1 space-y-1 border-l border-black-800 p-1">
               {showTodos
                 ? (todosByDay.get(dateKey) ?? []).map((task) => {
                     const colors = colorsFor(task.tagIds[0]);
@@ -119,7 +119,7 @@ export function TimeGridView({
             <div
               key={hour}
               style={{ height: HOUR_HEIGHT_PX }}
-              className="border-b border-slate-800 pr-2 text-right text-[10px] text-slate-600"
+              className="border-b border-black-800 pr-2 text-right text-[10px] text-black-600"
             >
               {hour !== 0 && formatHourLabel(hour)}
             </div>
@@ -135,12 +135,12 @@ export function TimeGridView({
           return (
             <div
               key={day.toISOString()}
-              className="relative flex-1 border-l border-slate-800"
+              className="relative flex-1 border-l border-black-800"
               style={{ height: GRID_HEIGHT_PX }}
               onClick={(e) => handleGridClick(day, e)}
             >
               {HOURS.map((hour) => (
-                <div key={hour} style={{ height: HOUR_HEIGHT_PX }} className="border-b border-slate-800" />
+                <div key={hour} style={{ height: HOUR_HEIGHT_PX }} className="border-b border-black-800" />
               ))}
 
               {timedOccurrences.map((occurrence) => {

@@ -47,8 +47,8 @@ export function TodoModule() {
     <div className="mx-auto max-w-2xl px-4 py-10">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">To-Do List</h1>
-          <p className="text-sm text-slate-400">{taskList.length} task{taskList.length === 1 ? '' : 's'}</p>
+          <h1 className="text-2xl font-semibold text-black-100">To-Do List</h1>
+          <p className="text-sm text-black-400">{taskList.length} task{taskList.length === 1 ? '' : 's'}</p>
         </div>
         <button
           onClick={openNewTaskForm}
@@ -63,13 +63,13 @@ export function TodoModule() {
         <CategoryFilter selectedTagId={selectedTagId} onSelect={setSelectedTagId} />
       </div>
 
-      <div className="mb-4 flex gap-1 rounded-lg bg-slate-900 p-1 text-sm font-medium">
+      <div className="mb-4 flex gap-1 rounded-lg bg-black-900 p-1 text-sm font-medium">
         {(['active', 'done', 'all'] as StatusFilter[]).map((option) => (
           <button
             key={option}
             onClick={() => setStatusFilter(option)}
             className={`flex-1 rounded-md py-1.5 capitalize transition ${
-              statusFilter === option ? 'bg-slate-700 text-slate-100 shadow-sm' : 'text-slate-500 hover:text-slate-300'
+              statusFilter === option ? 'bg-black-700 text-black-100 shadow-sm' : 'text-black-500 hover:text-black-300'
             }`}
           >
             {option}
@@ -79,7 +79,7 @@ export function TodoModule() {
 
       <div className="space-y-2">
         {taskList.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-700 py-12 text-center text-sm text-slate-500">
+          <div className="rounded-xl border border-dashed border-black-700 py-12 text-center text-sm text-black-500">
             No tasks here. Click "New Task" to add one.
           </div>
         ) : (
