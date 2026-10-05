@@ -28,12 +28,12 @@ export function CalendarLegend({ hiddenTagIds, onToggle }: CalendarLegendProps) 
           >
             <span
               className={`flex h-4 w-4 items-center justify-center rounded ${
-                visible ? colors.dot : 'border border-black-600 bg-transparent'
+                visible ? colors.dot : 'border border-neutral-600 bg-transparent'
               }`}
             >
               {visible && <CheckIcon className="h-3 w-3 text-white" />}
             </span>
-            <span className={visible ? 'text-black-300' : 'text-black-500 line-through'}>{tag.name}</span>
+            <span className={visible ? 'text-neutral-300' : 'text-neutral-500 line-through'}>{tag.name}</span>
           </button>
         );
       })}
@@ -44,12 +44,12 @@ export function CalendarLegend({ hiddenTagIds, onToggle }: CalendarLegendProps) 
       >
         <span
           className={`flex h-4 w-4 items-center justify-center rounded ${
-            !hiddenTagIds.has(UNCATEGORIZED_ID) ? 'bg-black-500' : 'border border-black-600 bg-transparent'
+            !hiddenTagIds.has(UNCATEGORIZED_ID) ? 'bg-neutral-500' : 'border border-neutral-600 bg-transparent'
           }`}
         >
           {!hiddenTagIds.has(UNCATEGORIZED_ID) && <CheckIcon className="h-3 w-3 text-white" />}
         </span>
-        <span className={hiddenTagIds.has(UNCATEGORIZED_ID) ? 'text-black-500 line-through' : 'text-black-300'}>
+        <span className={hiddenTagIds.has(UNCATEGORIZED_ID) ? 'text-neutral-500 line-through' : 'text-neutral-300'}>
           Uncategorized
         </span>
       </button>

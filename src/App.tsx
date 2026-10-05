@@ -16,9 +16,9 @@ export default function App() {
   const [activeModule, setActiveModule] = useState<ModuleId>('todo');
 
   return (
-    <div className="flex h-screen bg-slate-950">
-      <nav className="flex w-56 flex-shrink-0 flex-col border-r border-slate-800 bg-slate-900 py-4">
-        <div className="mb-4 px-4 text-lg font-semibold text-slate-100">Productivity App</div>
+    <div className="flex h-screen bg-neutral-950">
+      <nav className="flex w-56 flex-shrink-0 flex-col border-r border-neutral-800 bg-neutral-900 py-4">
+        <div className="mb-4 px-4 text-lg font-semibold text-neutral-100">Productivity App</div>
 
         <div className="flex flex-col gap-1 px-2">
           {AVAILABLE_MODULES.map(({ id, label, Icon }) => (
@@ -26,7 +26,7 @@ export default function App() {
               key={id}
               onClick={() => setActiveModule(id)}
               className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition ${
-                activeModule === id ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-800'
+                activeModule === id ? 'bg-accent-600 text-neutral-950' : 'text-neutral-400 hover:bg-neutral-800'
               }`}
             >
               <Icon className="h-5 w-5" />
@@ -35,10 +35,10 @@ export default function App() {
           ))}
         </div>
 
-        <div className="mt-4 border-t border-slate-800 px-2 pt-4">
-          <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">Coming soon</p>
+        <div className="mt-4 border-t border-neutral-800 px-2 pt-4">
+          <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-neutral-500">Coming soon</p>
           {UPCOMING_MODULES.map((label) => (
-            <div key={label} className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-slate-500">
+            <div key={label} className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-neutral-500">
               {label}
             </div>
           ))}

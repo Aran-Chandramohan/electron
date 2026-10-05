@@ -24,7 +24,7 @@ export function WeekdayToggle({ selected, onChange }: WeekdayToggleProps) {
             type="button"
             onClick={() => toggle(day)}
             className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-semibold transition ${
-              isSelected ? 'bg-teal-600 text-white' : 'bg-black-800 text-black-400 hover:bg-black-700'
+              isSelected ? 'bg-accent-600 text-neutral-950' : 'bg-neutral-800 text-neutral-400 hover:bg-neutral-700'
             }`}
           >
             {label}

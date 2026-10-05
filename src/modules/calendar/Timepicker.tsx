@@ -1,23 +1,24 @@
 import { useState } from 'react';
 
 interface TimePickerProps {
-  value: string; // Expected format: "10:00 AM"
+  value: string; // 24-hour "HH:MM", matching what EventForm's time inputs store (e.g. "09:30", "15:00")
   onChange: (timeString: string) => void;
   onClose: () => void;
 }
 
 export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps) {
-  // Parse the incoming value string (e.g., "09:30 AM") to initialize state accurately
+  // Parse the incoming 24-hour "HH:MM" value into the 12-hour hour/period
+  // this picker's circular faces display.
   const parseInitialTime = (timeStr?: string) => {
     if (!timeStr) return { h: 10, m: 0, p: 'AM' as const };
     try {
-      const parts = timeStr.trim().split(' ');
-      const timePart = parts[0] || '10:00';
-      const periodPart = parts[1]?.toUpperCase() === 'PM' ? 'PM' : 'AM';
-      const [hStr, mStr] = timePart.split(':');
-      const h = parseInt(hStr, 10) || 10;
+      const [hStr, mStr] = timeStr.trim().split(':');
+      const h24 = parseInt(hStr, 10);
       const m = parseInt(mStr, 10) || 0;
-      return { h, m, p: periodPart as 'AM' | 'PM' };
+      if (Number.isNaN(h24)) return { h: 10, m: 0, p: 'AM' as const };
+      const p: 'AM' | 'PM' = h24 >= 12 ? 'PM' : 'AM';
+      const h = h24 % 12 === 0 ? 12 : h24 % 12;
+      return { h, m, p };
     } catch {
       return { h: 10, m: 0, p: 'AM' as const };
     }
@@ -44,22 +45,25 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
 
   const handleAmPmClick = (val: 'AM' | 'PM') => {
     setAmPm(val);
-    // Finalize formatting and save
+    // Convert back to 24-hour "HH:MM" — the format every other time field
+    // in this form (and the save logic that parses it) actually uses.
+    const h24 = val === 'PM' ? (hour % 12) + 12 : hour % 12;
+    const formattedHour = h24.toString().padStart(2, '0');
     const formattedMinute = minute.toString().padStart(2, '0');
-    onChange(`${hour}:${formattedMinute} ${val}`);
+    onChange(`${formattedHour}:${formattedMinute}`);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="w-80 rounded-2xl border border-black-700 bg-black-900 p-6 shadow-2xl text-black-100 flex flex-col items-center">
+      <div className="w-80 rounded-2xl border border-neutral-700 bg-neutral-900 p-6 shadow-2xl text-neutral-100 flex flex-col items-center">
         
         {/* Header Display (Like Android: 10 : 00 AM) */}
         <div className="mb-6 flex items-baseline gap-2 text-3xl font-light">
           <button 
             type="button"
             onClick={() => setStep('hour')}
-            className={`px-2 rounded ${step === 'hour' ? 'bg-teal-600/30 text-teal-400 font-normal' : 'text-black-400'}`}
+            className={`px-2 rounded ${step === 'hour' ? 'bg-accent-600/30 text-accent-400 font-normal' : 'text-neutral-400'}`}
           >
             {hour}
           </button>
@@ -67,22 +71,22 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           <button 
             type="button"
             onClick={() => setStep('minute')}
-            className={`px-2 rounded ${step === 'minute' ? 'bg-teal-600/30 text-teal-400 font-normal' : 'text-black-400'}`}
+            className={`px-2 rounded ${step === 'minute' ? 'bg-accent-600/30 text-accent-400 font-normal' : 'text-neutral-400'}`}
           >
             {minute.toString().padStart(2, '0')}
           </button>
-          <div className="flex flex-col text-xs font-semibold text-black-400 ml-2">
+          <div className="flex flex-col text-xs font-semibold text-neutral-400 ml-2">
             <button 
               type="button"
               onClick={() => setAmPm('AM')} 
-              className={`${ampm === 'AM' ? 'text-teal-400 font-bold' : ''}`}
+              className={`${ampm === 'AM' ? 'text-accent-400 font-bold' : ''}`}
             >
               AM
             </button>
             <button 
               type="button"
               onClick={() => setAmPm('PM')} 
-              className={`${ampm === 'PM' ? 'text-teal-400 font-bold' : ''}`}
+              className={`${ampm === 'PM' ? 'text-accent-400 font-bold' : ''}`}
             >
               PM
             </button>
@@ -90,7 +94,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
         </div>
 
         {/* Clock Face Container */}
-        <div className="relative h-64 w-64 rounded-full bg-black-800/60 flex items-center justify-center border border-black-700/50">
+        <div className="relative h-64 w-64 rounded-full bg-neutral-800/60 flex items-center justify-center border border-neutral-700/50">
           
           {/* STEP 1: HOUR CIRCLE */}
           {step === 'hour' && (
@@ -106,9 +110,9 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                     key={h}
                     type="button"
                     onClick={() => handleHourClick(h)}
-                    style={{ transform: `tranblack(${x}px, ${y}px)` }}
+                    style={{ transform: `translate(${x}px, ${y}px)` }}
                     className={`absolute top-1/2 left-1/2 -ml-5 -mt-5 flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition ${
-                      hour === h ? 'bg-teal-600 text-white shadow-lg' : 'hover:bg-black-700 text-black-200'
+                      hour === h ? 'bg-accent-600 text-neutral-950 shadow-lg' : 'hover:bg-neutral-700 text-neutral-200'
                     }`}
                   >
                     {h}
@@ -132,9 +136,9 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                     key={m}
                     type="button"
                     onClick={() => handleMinuteClick(m)}
-                    style={{ transform: `tranblack(${x}px, ${y}px)` }}
+                    style={{ transform: `translate(${x}px, ${y}px)` }}
                     className={`absolute top-1/2 left-1/2 -ml-5 -mt-5 flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition ${
-                      minute === m ? 'bg-teal-600 text-white shadow-lg' : 'hover:bg-black-700 text-black-200'
+                      minute === m ? 'bg-accent-600 text-neutral-950 shadow-lg' : 'hover:bg-neutral-700 text-neutral-200'
                     }`}
                   >
                     {m.toString().padStart(2, '0')}
@@ -151,7 +155,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                 type="button"
                 onClick={() => handleAmPmClick('AM')}
                 className={`h-20 w-20 rounded-full font-semibold transition ${
-                  ampm === 'AM' ? 'bg-teal-600 text-white' : 'bg-black-700 text-black-300 hover:bg-black-600'
+                  ampm === 'AM' ? 'bg-accent-600 text-neutral-950' : 'bg-neutral-700 text-neutral-300 hover:bg-neutral-600'
                 }`}
               >
                 AM
@@ -160,7 +164,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
                 type="button"
                 onClick={() => handleAmPmClick('PM')}
                 className={`h-20 w-20 rounded-full font-semibold transition ${
-                  ampm === 'PM' ? 'bg-teal-600 text-white' : 'bg-black-700 text-black-300 hover:bg-black-600'
+                  ampm === 'PM' ? 'bg-accent-600 text-neutral-950' : 'bg-neutral-700 text-neutral-300 hover:bg-neutral-600'
                 }`}
               >
                 PM
@@ -169,7 +173,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           )}
 
           {/* Center clock pin dot */}
-          <div className="h-2 w-2 rounded-full bg-teal-500 pointer-events-none" />
+          <div className="h-2 w-2 rounded-full bg-accent-500 pointer-events-none" />
         </div>
 
         {/* Footer actions */}
@@ -177,7 +181,7 @@ export function AndroidTimePicker({ value, onChange, onClose }: TimePickerProps)
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg px-4 py-2 text-sm font-medium text-black-400 hover:bg-black-800 hover:text-black-200"
+            className="rounded-lg px-4 py-2 text-sm font-medium text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200"
           >
             Cancel
           </button>

@@ -177,50 +177,50 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
-      <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-black-900 p-6 shadow-xl ring-1 ring-black-800">
+      <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-neutral-900 p-6 shadow-xl ring-1 ring-neutral-800">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-black-100">
+          <h2 className="text-lg font-semibold text-neutral-100">
             {editingOccurrence ? 'Edit Event' : 'New Event'}
           </h2>
-          <button onClick={onClose} className="rounded-full p-1 text-black-500 hover:bg-black-800 hover:text-black-300">
+          <button onClick={onClose} className="rounded-full p-1 text-neutral-500 hover:bg-neutral-800 hover:text-neutral-300">
             <XIcon className="h-5 w-5" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-black-300">Title</label>
+            <label className="mb-1 block text-sm font-medium text-neutral-300">Title</label>
             <input
               autoFocus
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Team Sync"
               required
-              className="w-full rounded-lg border border-black-700 bg-black-800 px-3 py-2 text-sm text-black-100 outline-none placeholder:text-black-500 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm text-neutral-100 outline-none placeholder:text-neutral-500 focus:border-accent-500 focus:ring-1 focus:ring-accent-500"
             />
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-3">
-              <label className="mb-1 block text-sm font-medium text-black-300">Date</label>
+              <label className="mb-1 block text-sm font-medium text-neutral-300">Date</label>
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
-                className="w-full rounded-lg border border-black-700 bg-black-800 px-3 py-2 text-sm text-black-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm text-neutral-100 outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500"
               />
             </div>
 
             <div className="col-span-3 grid grid-cols-2 gap-3">
               {/* START TIME PICKER */}
               <div className="relative">
-                <label className="mb-1 block text-sm font-medium text-black-300">Start time</label>
+                <label className="mb-1 block text-sm font-medium text-neutral-300">Start time</label>
                 <button
                   type="button"
                   disabled={allDay}
                   onClick={() => setIsStartClockOpen(true)}
-                  className="w-full rounded-lg border border-black-700 bg-black-800 px-3 py-2 text-left text-sm text-black-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 disabled:bg-black-800/50 disabled:text-black-500"
+                  className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-2 text-left text-sm text-neutral-100 outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 disabled:bg-neutral-800/50 disabled:text-neutral-500"
                 >
                   {startTime}
                 </button>
@@ -236,12 +236,12 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
 
               {/* END TIME PICKER */}
               <div className="relative">
-                <label className="mb-1 block text-sm font-medium text-black-300">End time</label>
+                <label className="mb-1 block text-sm font-medium text-neutral-300">End time</label>
                 <button
                   type="button"
                   disabled={allDay}
                   onClick={() => setIsEndClockOpen(true)}
-                  className="w-full rounded-lg border border-black-700 bg-black-800 px-3 py-2 text-left text-sm text-black-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 disabled:bg-black-800/50 disabled:text-black-500"
+                  className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-2 text-left text-sm text-neutral-100 outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 disabled:bg-neutral-800/50 disabled:text-neutral-500"
                 >
                   {endTime}
                 </button>
@@ -257,26 +257,26 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm font-medium text-black-300">
+          <label className="flex items-center gap-2 text-sm font-medium text-neutral-300">
             <input
               type="checkbox"
               checked={allDay}
               onChange={(e) => setAllDay(e.target.checked)}
-              className="h-4 w-4 rounded border-black-600 bg-black-800 text-teal-600 focus:ring-teal-500"
+              className="h-4 w-4 rounded border-neutral-600 bg-neutral-800 text-accent-600 focus:ring-accent-500"
             />
             All day
           </label>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-black-300">Repeat</label>
+            <label className="mb-1 block text-sm font-medium text-neutral-300">Repeat</label>
             <RepeatSelect mode={repeatMode} eventDate={eventDateForRepeat} onChange={handleRepeatModeChange} />
             {repeatMode === 'custom' && customRule && (
               <div className="mt-1.5 flex items-center justify-between">
-                <p className="text-xs text-black-500">{describeRecurrenceRule(customRule, eventDateForRepeat)}</p>
+                <p className="text-xs text-neutral-500">{describeRecurrenceRule(customRule, eventDateForRepeat)}</p>
                 <button
                   type="button"
                   onClick={() => setCustomModalOpen(true)}
-                  className="text-xs font-medium text-teal-400 hover:text-teal-300"
+                  className="text-xs font-medium text-accent-400 hover:text-accent-300"
                 >
                   Edit
                 </button>
@@ -285,17 +285,17 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-black-300">Location</label>
+            <label className="mb-1 block text-sm font-medium text-neutral-300">Location</label>
             <input
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Optional"
-              className="w-full rounded-lg border border-black-700 bg-black-800 px-3 py-2 text-sm text-black-100 outline-none placeholder:text-black-500 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm text-neutral-100 outline-none placeholder:text-neutral-500 focus:border-accent-500 focus:ring-1 focus:ring-accent-500"
             />
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-black-300">Category</label>
+            <label className="mb-1.5 block text-sm font-medium text-neutral-300">Category</label>
             <TagPicker selectedTagId={tagId} onChange={setTagId} />
           </div>
 
@@ -304,7 +304,7 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
               <button
                 type="button"
                 onClick={handleDelete}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-red-400 hover:bg-teal-500/10"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-red-400 hover:bg-red-500/10"
               >
                 Delete
               </button>
@@ -315,13 +315,13 @@ export function EventForm({ editingOccurrence, defaultDate, onClose }: EventForm
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-black-400 hover:bg-black-800"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-neutral-400 hover:bg-neutral-800"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="rounded-lg bg-teal-600 hover:bg-teal-500"
+                className="rounded-lg bg-accent-600 px-4 py-2 text-sm font-medium text-neutral-950 hover:bg-accent-500"
               >
                 {editingOccurrence ? 'Save changes' : 'Add event'}
               </button>

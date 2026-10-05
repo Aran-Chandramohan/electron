@@ -16,7 +16,7 @@ export function TagPicker({ selectedTagId, onChange }: TagPickerProps) {
         type="button"
         onClick={() => onChange('')}
         className={`rounded-full px-3 py-1 text-sm font-medium transition ${
-          selectedTagId === '' ? 'bg-teal-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+          selectedTagId === '' ? 'bg-accent-600 text-neutral-950' : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
         }`}
       >
         None

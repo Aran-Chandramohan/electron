@@ -15,16 +15,20 @@ export const TAG_COLOR_CLASSES: Record<string, { chip: string; dot: string; ring
   slate: { chip: 'bg-slate-500/15 text-slate-300', dot: 'bg-slate-400', ring: 'ring-slate-400' },
 };
 
-// Solid backgrounds (for calendar event pills)
-export const TAG_SOLID_CLASSES: Record<string, string> = {
-  red: 'bg-red-500',
-  orange: 'bg-orange-500',
-  yellow: 'bg-yellow-500',
-  emerald: 'bg-emerald-500',
-  cyan: 'bg-cyan-500',
-  purple: 'bgo-purple-500',
-  rose: 'bg-rose-500',
-  slate: 'bg-slate-500',
+// Solid backgrounds (for calendar event pills). Paired with whichever text
+// color actually passes contrast against that specific background — most
+// Tailwind "-500" shades (yellow, cyan, emerald, orange especially) are too
+// light for white text to read well, so this isn't just bg + a blanket
+// text-white applied by callers.
+export const TAG_SOLID_CLASSES: Record<string, { bg: string; text: string }> = {
+  red: { bg: 'bg-red-500', text: 'text-white' },
+  orange: { bg: 'bg-orange-500', text: 'text-neutral-950' },
+  yellow: { bg: 'bg-yellow-500', text: 'text-neutral-950' },
+  emerald: { bg: 'bg-emerald-500', text: 'text-neutral-950' },
+  cyan: { bg: 'bg-cyan-500', text: 'text-neutral-950' },
+  purple: { bg: 'bg-purple-500', text: 'text-white' },
+  rose: { bg: 'bg-rose-500', text: 'text-white' },
+  slate: { bg: 'bg-slate-500', text: 'text-white' },
 };
 
 export function colorClassesFor(color: string) {

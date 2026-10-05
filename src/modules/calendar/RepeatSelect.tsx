@@ -18,7 +18,7 @@ export function RepeatSelect({ mode, eventDate, onChange }: RepeatSelectProps) {
     <select
       value={mode}
       onChange={(e) => onChange(e.target.value as RepeatMode)}
-      className="w-full rounded-lg border border-black-700 bg-black-800 px-3 py-2 text-sm text-black-100 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+      className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm text-neutral-100 outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500"
     >
       <option value="none">Does not repeat</option>
       <option value="daily">Daily</option>

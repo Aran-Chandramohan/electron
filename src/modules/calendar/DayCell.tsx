@@ -62,17 +62,17 @@ export function DayCell({
         if (!raw) return;
         onEventDrop(JSON.parse(raw) as EventDragPayload, date);
       }}
-      className={`flex ${minHeightClassName} flex-col gap-1 border-b border-r border-black-800 p-1.5 text-left transition hover:bg-black-800/50 ${
-        isCurrentMonth ? 'bg-black-900' : 'bg-black-900/40'
+      className={`flex ${minHeightClassName} flex-col gap-1 border-b border-r border-neutral-800 p-1.5 text-left transition hover:bg-neutral-800/50 ${
+        isCurrentMonth ? 'bg-neutral-900' : 'bg-neutral-900/40'
       }`}
     >
       <span
         className={`flex h-6 w-6 items-center justify-center rounded-full text-sm font-medium ${
           isToday
-            ? 'bg-teal-600 text-white'
+            ? 'bg-accent-600 text-neutral-950'
             : isCurrentMonth
-              ? 'text-black-300'
-              : 'text-black-600'
+              ? 'text-neutral-300'
+              : 'text-neutral-600'
         }`}
       >
         {date.getDate()}
@@ -82,7 +82,7 @@ export function DayCell({
         {showTodos
           ? visibleTodos.map((task) => {
               const tag = task.tagIds[0] ? tags[task.tagIds[0]] : undefined;
-              const colors = colorClassesFor(tag?.color ?? 'black');
+              const colors = colorClassesFor(tag?.color ?? 'slate');
               return (
                 <span
                   key={task.id}
@@ -102,7 +102,8 @@ export function DayCell({
           : visibleEvents.map((occurrence) => {
               const { event } = occurrence;
               const tag = event.tagIds[0] ? tags[event.tagIds[0]] : undefined;
-              const solid = solidColorClassFor(tag?.color ?? 'teal');
+              const solid = solidColorClassFor(tag?.color ?? 'slate');
+              const solidClasses = `${solid.bg} ${solid.text}`;
               return (
                 <span
                   key={`${occurrence.masterId}:${occurrence.originalStart}`}
@@ -120,7 +121,7 @@ export function DayCell({
                     e.stopPropagation();
                     onEventClick(occurrence);
                   }}
-                  className={`flex items-center gap-1 truncate rounded px-1.5 py-0.5 text-left text-xs font-medium text-white ${solid}`}
+                  className={`flex items-center gap-1 truncate rounded px-1.5 py-0.5 text-left text-xs font-medium ${solidClasses}`}
                   title={event.title}
                 >
                   {occurrence.isRecurring && <RepeatIcon className="h-2.5 w-2.5 flex-shrink-0" />}
@@ -132,8 +133,8 @@ export function DayCell({
               );
             })}
         {showTodos
-          ? todoOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-black-500">+{todoOverflowCount} more</span>
-          : eventOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-black-500">+{eventOverflowCount} more</span>}
+          ? todoOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-neutral-500">+{todoOverflowCount} more</span>
+          : eventOverflowCount > 0 && <span className="px-1.5 text-xs font-medium text-neutral-500">+{eventOverflowCount} more</span>}
       </div>
     </button>
   );

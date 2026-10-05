@@ -32,8 +32,8 @@ export function CategoryFilter({ selectedTagId, onSelect }: CategoryFilterProps)
         onClick={() => onSelect(null)}
         className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
           selectedTagId === null
-            ? 'bg-teal-600 text-white'
-            : 'bg-slate-800 text-slate-300 ring-1 ring-slate-700 hover:bg-slate-700'
+            ? 'bg-accent-600 text-neutral-950'
+            : 'bg-neutral-800 text-neutral-300 ring-1 ring-neutral-700 hover:bg-neutral-700'
         }`}
       >
         All
@@ -59,7 +59,7 @@ export function CategoryFilter({ selectedTagId, onSelect }: CategoryFilterProps)
                 if (isSelected) onSelect(null);
                 deleteTag(tag.id);
               }}
-              className="absolute -right-1.5 -top-1.5 hidden h-4 w-4 items-center justify-center rounded-full bg-slate-600 text-white group-hover:flex"
+              className="absolute -right-1.5 -top-1.5 hidden h-4 w-4 items-center justify-center rounded-full bg-neutral-600 text-white group-hover:flex"
               title={`Delete "${tag.name}" category`}
             >
               <XIcon className="h-2.5 w-2.5" />
@@ -82,12 +82,12 @@ export function CategoryFilter({ selectedTagId, onSelect }: CategoryFilterProps)
             }
           }}
           placeholder="Category name"
-          className="w-32 rounded-full border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 outline-none focus:border-teal-500"
+          className="w-32 rounded-full border border-neutral-700 bg-neutral-800 px-3 py-1.5 text-sm text-neutral-100 outline-none focus:border-accent-500"
         />
       ) : (
         <button
           onClick={() => setAdding(true)}
-          className="flex items-center gap-1 rounded-full border border-dashed border-slate-600 px-3 py-1.5 text-sm font-medium text-slate-400 hover:bg-slate-800"
+          className="flex items-center gap-1 rounded-full border border-dashed border-neutral-600 px-3 py-1.5 text-sm font-medium text-neutral-400 hover:bg-neutral-800"
         >
           <PlusIcon className="h-3.5 w-3.5" />
           Category

@@ -47,12 +47,12 @@ export function TodoModule() {
     <div className="mx-auto max-w-2xl px-4 py-10">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-black-100">To-Do List</h1>
-          <p className="text-sm text-black-400">{taskList.length} task{taskList.length === 1 ? '' : 's'}</p>
+          <h1 className="text-2xl font-semibold text-neutral-100">To-Do List</h1>
+          <p className="text-sm text-neutral-400">{taskList.length} task{taskList.length === 1 ? '' : 's'}</p>
         </div>
         <button
           onClick={openNewTaskForm}
-          className="flex items-center gap-1.5 rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teal-500"
+          className="flex items-center gap-1.5 rounded-lg bg-accent-600 px-4 py-2 text-sm font-medium text-neutral-950 shadow-sm hover:bg-accent-500"
         >
           <PlusIcon className="h-4 w-4" />
           New Task
@@ -63,13 +63,13 @@ export function TodoModule() {
         <CategoryFilter selectedTagId={selectedTagId} onSelect={setSelectedTagId} />
       </div>
 
-      <div className="mb-4 flex gap-1 rounded-lg bg-black-900 p-1 text-sm font-medium">
+      <div className="mb-4 flex gap-1 rounded-lg bg-neutral-900 p-1 text-sm font-medium">
         {(['active', 'done', 'all'] as StatusFilter[]).map((option) => (
           <button
             key={option}
             onClick={() => setStatusFilter(option)}
             className={`flex-1 rounded-md py-1.5 capitalize transition ${
-              statusFilter === option ? 'bg-black-700 text-black-100 shadow-sm' : 'text-black-500 hover:text-black-300'
+              statusFilter === option ? 'bg-neutral-700 text-neutral-100 shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
             }`}
           >
             {option}
@@ -79,7 +79,7 @@ export function TodoModule() {
 
       <div className="space-y-2">
         {taskList.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-black-700 py-12 text-center text-sm text-black-500">
+          <div className="rounded-xl border border-dashed border-neutral-700 py-12 text-center text-sm text-neutral-500">
             No tasks here. Click "New Task" to add one.
           </div>
         ) : (
