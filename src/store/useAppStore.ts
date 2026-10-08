@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { AppState, Task, Tag, Event, RecurrenceRule, ID } from '../types/schema';
+import type { AppState, Task, Tag, Event, RecurrenceRule, StudyClass, StudyTableCell, ID } from '../types/schema';
 import { splitRecurrenceSeries } from '../modules/calendar/recurrence';
 
 function newId(): ID {
@@ -49,6 +49,16 @@ interface AppActions {
   ) => void;
   deleteEventOccurrence: (masterId: ID, originalStart: string, scope: 'this' | 'following' | 'all') => void;
 
+  // ---- Study Map (classes/subjects, each its own freeform formatted table) ----
+  addStudyClass: (name: string) => ID;
+  updateStudyClass: (id: ID, changes: Partial<Omit<StudyClass, 'id' | 'createdAt' | 'rows'>>) => void;
+  deleteStudyClass: (id: ID) => void;
+  addStudyClassRow: (id: ID) => void;
+  removeStudyClassRow: (id: ID, rowIndex: number) => void;
+  addStudyClassColumn: (id: ID) => void;
+  removeStudyClassColumn: (id: ID, colIndex: number) => void;
+  updateStudyClassCell: (id: ID, rowIndex: number, colIndex: number, changes: Partial<StudyTableCell>) => void;
+
   // ---- Tag CRUD (used as "categories" by the To-Do module, event colors
   // by the Calendar module, and by every future module for cross-cutting
   // labeling) ----
@@ -71,6 +81,7 @@ export const useAppStore = create<AppStore>()(
       jobs: {},
       events: {},
       researchNotes: {},
+      studyClasses: {},
       tags: Object.fromEntries(DEFAULT_TAGS.map((t) => [t.id, t])),
       relations: {},
 
@@ -301,6 +312,98 @@ export const useAppStore = create<AppStore>()(
         });
       },
 
+      addStudyClass: (name) => {
+        const id = newId();
+        const timestamp = now();
+        const studyClass: StudyClass = {
+          id,
+          createdAt: timestamp,
+          updatedAt: timestamp,
+          archived: false,
+          tagIds: [],
+          name,
+          collapsed: false,
+          rows: [
+            [{ value: 'Topic', bold: true }, { value: 'Notes', bold: true }],
+            [{ value: '' }, { value: '' }],
+          ],
+        };
+        set((state) => ({ studyClasses: { ...state.studyClasses, [id]: studyClass } }));
+        return id;
+      },
+
+      updateStudyClass: (id, changes) => {
+        set((state) => {
+          const existing = state.studyClasses[id];
+          if (!existing) return state;
+          return {
+            studyClasses: { ...state.studyClasses, [id]: { ...existing, ...changes, updatedAt: now() } },
+          };
+        });
+      },
+
+      deleteStudyClass: (id) => {
+        set((state) => ({
+          studyClasses: Object.fromEntries(
+            Object.entries(state.studyClasses).filter(([classId]) => classId !== id)
+          ),
+        }));
+      },
+
+      addStudyClassRow: (id) => {
+        set((state) => {
+          const cls = state.studyClasses[id];
+          if (!cls) return state;
+          const colCount = cls.rows[0]?.length ?? 1;
+          const newRow: StudyTableCell[] = Array.from({ length: colCount }, () => ({ value: '' }));
+          return {
+            studyClasses: { ...state.studyClasses, [id]: { ...cls, rows: [...cls.rows, newRow], updatedAt: now() } },
+          };
+        });
+      },
+
+      removeStudyClassRow: (id, rowIndex) => {
+        set((state) => {
+          const cls = state.studyClasses[id];
+          if (!cls || cls.rows.length <= 1) return state; // always keep at least one row
+          return {
+            studyClasses: {
+              ...state.studyClasses,
+              [id]: { ...cls, rows: cls.rows.filter((_, r) => r !== rowIndex), updatedAt: now() },
+            },
+          };
+        });
+      },
+
+      addStudyClassColumn: (id) => {
+        set((state) => {
+          const cls = state.studyClasses[id];
+          if (!cls) return state;
+          const newRows = cls.rows.map((row) => [...row, { value: '' }]);
+          return { studyClasses: { ...state.studyClasses, [id]: { ...cls, rows: newRows, updatedAt: now() } } };
+        });
+      },
+
+      removeStudyClassColumn: (id, colIndex) => {
+        set((state) => {
+          const cls = state.studyClasses[id];
+          if (!cls || (cls.rows[0]?.length ?? 0) <= 1) return state; // always keep at least one column
+          const newRows = cls.rows.map((row) => row.filter((_, c) => c !== colIndex));
+          return { studyClasses: { ...state.studyClasses, [id]: { ...cls, rows: newRows, updatedAt: now() } } };
+        });
+      },
+
+      updateStudyClassCell: (id, rowIndex, colIndex, changes) => {
+        set((state) => {
+          const cls = state.studyClasses[id];
+          if (!cls) return state;
+          const newRows = cls.rows.map((row, r) =>
+            r === rowIndex ? row.map((cell, c) => (c === colIndex ? { ...cell, ...changes } : cell)) : row
+          );
+          return { studyClasses: { ...state.studyClasses, [id]: { ...cls, rows: newRows, updatedAt: now() } } };
+        });
+      },
+
       addTag: (name, color) => {
         const id = newId();
         const tag: Tag = { id, name, color };
@@ -313,7 +416,7 @@ export const useAppStore = create<AppStore>()(
           tags: Object.fromEntries(
             Object.entries(state.tags).filter(([tagId]) => tagId !== id)
           ),
-          // Detach the tag from any tasks/events that referenced it.
+          // Detach the tag from any tasks/events/study classes that referenced it.
           tasks: Object.fromEntries(
             Object.entries(state.tasks).map(([taskId, task]) => [
               taskId,
@@ -324,6 +427,12 @@ export const useAppStore = create<AppStore>()(
             Object.entries(state.events).map(([eventId, event]) => [
               eventId,
               { ...event, tagIds: event.tagIds.filter((t) => t !== id) },
+            ])
+          ),
+          studyClasses: Object.fromEntries(
+            Object.entries(state.studyClasses).map(([classId, studyClass]) => [
+              classId,
+              { ...studyClass, tagIds: studyClass.tagIds.filter((t) => t !== id) },
             ])
           ),
         }));

@@ -21,7 +21,7 @@ export interface Tag {
   color: string; // tailwind color token, e.g. 'blue'
 }
 
-export type EntityType = 'task' | 'project' | 'job' | 'event' | 'researchNote';
+export type EntityType = 'task' | 'project' | 'job' | 'event' | 'researchNote' | 'studyClass';
 
 export interface EntityRef {
   type: EntityType;
@@ -145,12 +145,40 @@ export interface ResearchNote extends BaseEntity {
   jobId?: ID;
 }
 
+// Per-cell formatting for a Study Map class table — the "Excel-level
+// control" the feature asks for. Every field is optional; an empty object
+// means "use the default look."
+export interface StudyTableCellStyle {
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  fontSize?: number; // px
+  fontFamily?: string; // CSS font-family value, e.g. 'Georgia, serif'
+  textColor?: string; // hex
+  fillColor?: string; // hex
+}
+
+export interface StudyTableCell extends StudyTableCellStyle {
+  value: string;
+}
+
+// A "class" IS a table — there's no separate schema for rows/columns beyond
+// the grid itself. Row 0 is a plain content row like any other; users bold
+// it themselves to make it read as a header, matching how Excel actually
+// works rather than hard-coding a special header concept.
+export interface StudyClass extends BaseEntity {
+  name: string;
+  collapsed: boolean;
+  rows: StudyTableCell[][];
+}
+
 export interface AppState {
   tasks: Record<ID, Task>;
   projects: Record<ID, Project>;
   jobs: Record<ID, Job>;
   events: Record<ID, Event>;
   researchNotes: Record<ID, ResearchNote>;
+  studyClasses: Record<ID, StudyClass>;
   tags: Record<ID, Tag>;
   relations: Record<ID, Relation>;
 }

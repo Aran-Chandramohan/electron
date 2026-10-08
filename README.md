@@ -58,6 +58,11 @@ pipeline and is all a single-user local app actually needs.
     the recurrence UI (simple picker + progressive-disclosure custom editor).
   - `EditScopeDialog.tsx` — the "This event / This and following / All
     events" chooser shown when editing or deleting a recurring occurrence.
+- `src/modules/study/` — Module 6: Study Map. Each "class" is a freeform,
+  per-cell-formattable table (`ClassTable.tsx` + `CellFormatToolbar.tsx`) —
+  add/remove rows and columns, and set bold/italic/underline, font,
+  font size, text color and fill color per cell. Collapsible via the
+  chevron next to the title.
 - `src/components/shared/` — cross-module UI: the Tag color palette,
   `CategoryFilter` (filter-by-tag bar), and `TagPicker` (the category
   selector used in both TaskForm and EventForm).
@@ -74,7 +79,8 @@ pipeline and is all a single-user local app actually needs.
 - [x] Recurring events (daily/weekly/monthly/yearly, custom intervals,
       multi-weekday, end date/count, per-occurrence edit/move/delete
       exceptions, drag-to-reschedule a single occurrence)
-- [x] Dark theme (app-wide, no light mode currently)
+- [x] Dark theme, black + electric teal (app-wide, no light mode currently)
+- [x] Module 6: Study Map (per-class tables with Excel-style cell formatting)
 - [ ] Module 3: Project Board
 - [ ] Module 4: Job Board
 - [ ] Module 5: Deep-Dive research

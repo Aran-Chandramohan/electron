@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { TodoModule } from './modules/todo/TodoModule';
 import { CalendarModule } from './modules/calendar/CalendarModule';
-import { CalendarIcon, ChecklistIcon } from './components/icons/Icons';
+import { StudyMapModule } from './modules/study/StudyMapModule';
+import { BookOpenIcon, CalendarIcon, ChecklistIcon } from './components/icons/Icons';
 
-type ModuleId = 'todo' | 'calendar';
+type ModuleId = 'todo' | 'calendar' | 'study';
 
 const AVAILABLE_MODULES: { id: ModuleId; label: string; Icon: typeof CalendarIcon }[] = [
   { id: 'todo', label: 'To-Do List', Icon: ChecklistIcon },
   { id: 'calendar', label: 'Calendar', Icon: CalendarIcon },
+  { id: 'study', label: 'Study Map', Icon: BookOpenIcon },
 ];
 
 const UPCOMING_MODULES = ['Project Board', 'Job Board', 'Deep-Dive Research'];
@@ -48,6 +50,7 @@ export default function App() {
       <main className="flex-1 overflow-y-auto">
         {activeModule === 'todo' && <TodoModule />}
         {activeModule === 'calendar' && <CalendarModule />}
+        {activeModule === 'study' && <StudyMapModule />}
       </main>
     </div>
   );
